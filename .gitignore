@@ -1,0 +1,62 @@
+# Game files and local lib
+lib
+
+# Build output
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.sln
+*.csproj
+*.userprefs
+*.vscode/
+*.suo
+*.user
+*.vssettings
+*.vssscc
+*.vspscc
+*.sln.docstates
+
+# NuGet packages
+packages/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+*.trx
+*.log
+
+# Resharper files
+_ReSharper*/
+
+# Build tools
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Package files
+*.nupkg
+*.pfx
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln.docstates
+*.userprefs
+*.sublime-project
+*.sublime-workspace
+
+# User-specific files
+*.suo
+*.user
+*.userprefs
+*.bak
+
+# Miscellaneous
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
