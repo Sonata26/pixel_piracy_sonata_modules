@@ -44,7 +44,6 @@ namespace Sonata_Modules
   }
 
 
-  [HarmonyDebug]
   [HarmonyPatch(typeof(FishingTask), "Logic")]
   class FishAnywherePatch
   {
@@ -83,4 +82,37 @@ namespace Sonata_Modules
       }
     }
   }
+
+  [HarmonyPatch(typeof(DragObjectHandler), "Update")]
+  class ThrowPoopAnywherePatch
+  {
+    // TODO: Extract this out to a reusuable method or list of patch targets?
+    static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    {
+      var found = false;
+      var code = new List<CodeInstruction>(instructions);
+
+      for (int i = 0; i < code.Count; i++)
+      {
+        var instruction = code[i];
+
+        if (found == false && instruction.opcode == OpCodes.Ldc_R4 && instruction.OperandIs(float.PositiveInfinity))
+        {
+          found = true;
+
+          yield return new CodeInstruction(OpCodes.Ldc_R4, 1f);
+        }
+        else
+        {
+          yield return instruction;
+        }
+      }
+
+      if (found is false)
+      {
+        Debug.Log("Unable to find Raycast check in DragObjectHandler.Update, skipping throw poop anywhere patch.");
+      }
+    }
+  }
+
 }
